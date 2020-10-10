@@ -26,7 +26,7 @@ public class Role {
     @Column(name = "allowed_delete")
     private boolean allowedDelete;
 
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)     //if eager type, use JsonIgnore
     private Set<User> users;
 
 

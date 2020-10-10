@@ -1,0 +1,36 @@
+package com.chaonengquan.config;
+
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.sqs.AmazonSQS;
+import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
+
+@Configuration
+public class AWSConfig {
+
+    @Value("${aws.region}") //fixed name, read documentation
+    private String awsRegion;
+
+    @Bean
+    @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+    public AmazonS3 getAmazonS3(){
+        return AmazonS3ClientBuilder.standard().withCredentials(new DefaultAWSCredentialsProviderChain())
+                .withRegion(awsRegion)
+                .build();
+    }
+
+    @Bean
+    @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+    public AmazonSQS getAmazonSQS(){
+        return AmazonSQSClientBuilder.standard().withCredentials(new DefaultAWSCredentialsProviderChain())
+                .withRegion(awsRegion)
+                .build();
+    }
+
+}
