@@ -10,3 +10,5 @@ A modular and scalable J2EE sales management web service in Spring Boot framewor
 * Use Maven to manage application dependencies, Docker to setup local development environment, and Git to source control
 
 * Use Servlet Filter and JWT to Implement stateless authentication/authorization
+
+* Integrated AWS S3, SQS service into application service layer with AWS SDK
